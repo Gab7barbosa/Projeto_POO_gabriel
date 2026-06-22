@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\File;
 
 class MangaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index(Request $request)
     {
         $query = Manga::query();
@@ -53,17 +51,13 @@ class MangaController extends Controller
         return view('mangas.index', compact('mangas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
         return view('mangas.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -95,17 +89,13 @@ class MangaController extends Controller
         return redirect()->route('mangas.index')->with('success', 'Mangá cadastrado com sucesso!');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(Manga $manga)
     {
         return view('mangas.edit', compact('manga'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, Manga $manga)
     {
         $validated = $request->validate([
@@ -141,9 +131,7 @@ class MangaController extends Controller
         return redirect()->route('mangas.index')->with('success', 'Mangá atualizado com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(Manga $manga)
     {
         // Delete image file if exists
