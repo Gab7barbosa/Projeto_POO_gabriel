@@ -9,9 +9,7 @@ use Illuminate\Validation\Rules;
 
 class FuncionarioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index(Request $request)
     {
         $query = User::query();
@@ -34,17 +32,13 @@ class FuncionarioController extends Controller
         return view('funcionarios.index', compact('funcionarios'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+     
     public function create()
     {
         return view('funcionarios.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -65,17 +59,13 @@ class FuncionarioController extends Controller
         return redirect()->route('funcionarios.index')->with('success', 'Funcionário cadastrado com sucesso!');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(User $funcionario)
     {
         return view('funcionarios.edit', compact('funcionario'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(Request $request, User $funcionario)
     {
         $validated = $request->validate([
@@ -111,9 +101,7 @@ class FuncionarioController extends Controller
         return redirect()->route('funcionarios.index')->with('success', 'Funcionário atualizado com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(User $funcionario)
     {
         // Security check: prevent self-deletion
