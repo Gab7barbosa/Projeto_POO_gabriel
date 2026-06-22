@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: manga_store_app
+    ports:
+      - "8080:80"
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=manga_store_db
+      - DB_USERNAME=root
+      - DB_PASSWORD=secret
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www/html
+    networks:
+      - manga_store_network
+
+  db:
+    image: mysql:8.0
+    container_name: manga_store_db
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=manga_store_db
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - manga_store_network
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8090:80"
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+      - PMA_USER=root
+      - PMA_PASSWORD=secret
+    networks:
+      - manga_store_network
+
+volumes:
+  db_data:
+
+networks:
+  manga_store_network:
+    driver: bridge
