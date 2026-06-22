@@ -9,7 +9,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FuncionarioController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Route::middleware(['auth', 'role:admin,funcionario'])->group(function () {
