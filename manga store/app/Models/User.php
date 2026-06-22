@@ -13,11 +13,7 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
+    
     protected $fillable = [
         'name',
         'email',
@@ -28,21 +24,13 @@ class User extends Authenticatable
         'active',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
+    
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
+    
     protected function casts(): array
     {
         return [
@@ -52,17 +40,13 @@ class User extends Authenticatable
         ];
     }
 
-    /**
-     * Check if the user is an admin.
-     */
+    
     public function isAdmin(): bool
     {
         return $this->role === 'admin';
     }
 
-    /**
-     * Check if the user is a funcionario.
-     */
+    
     public function isFuncionario(): bool
     {
         return $this->role === 'funcionario';
