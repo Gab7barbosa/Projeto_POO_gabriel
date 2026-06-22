@@ -14,7 +14,7 @@ class DashboardController extends Controller
     {
         $totalMangas = Manga::count();
         
-        // Sum of price * stock across all mangas
+        
         $totalStockValue = Manga::all()->sum(function ($manga) {
             return $manga->preco * $manga->estoque;
         });
@@ -22,7 +22,7 @@ class DashboardController extends Controller
         $totalClientes = Cliente::count();
         $totalFuncionarios = User::where('role', 'funcionario')->count();
 
-        // Retrieve mangas with low stock (<= 5 units)
+        
         $lowStockMangas = Manga::where('estoque', '<=', 5)
             ->orderBy('estoque', 'asc')
             ->take(5)
