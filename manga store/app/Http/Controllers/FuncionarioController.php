@@ -78,7 +78,7 @@ class FuncionarioController extends Controller
             'active' => 'boolean',
         ]);
 
-        // Security check: prevent self-deactivation or self-demotion
+        
         if ($funcionario->id === auth()->id()) {
             if ($validated['role'] !== 'admin') {
                 return redirect()->back()->withErrors(['role' => 'Você não pode revogar seus próprios privilégios de administrador.']);
